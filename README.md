@@ -4,23 +4,6 @@ Lightweight helpers for Dapper, currently focused on a `GetAsync<T>` extension f
 
 ## Install (dotnet CLI)
 
-This repository is a library project. The most reliable way to use it from another project is a project reference.
-
-1. Clone this repo (or copy it into your solution).
-2. From your consuming project folder, add a reference:
-
-```bash
-dotnet add reference ../path/to/dapper-toolkit/src/Dapper.Toolkit/Dapper.Toolkit.csproj
-```
-
-3. Build your solution:
-
-```bash
-dotnet build
-```
-
-If you later publish this as a NuGet package, you would install it like:
-
 ```bash
 dotnet add package Dapper.Toolkit
 ```
