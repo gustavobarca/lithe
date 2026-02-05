@@ -3,7 +3,7 @@ name: Publish NuGet
 on:
   push:
     tags:
-      - "v*.*.*"
+      - "*.*.*"
 
 permissions:
   contents: read
@@ -21,18 +21,11 @@ jobs:
         with:
           dotnet-version: "9.0.x"
 
-      - name: Restore
-        run: dotnet restore
-
-      - name: Build
-        run: dotnet build -c Release --no-restore
-
       - name: Pack
         run: |
           VERSION="${GITHUB_REF#refs/tags/v}"
           dotnet pack src/Lithe/Lithe.csproj \
             -c Release \
-            --no-build \
             /p:PackageVersion="$VERSION" \
             /p:Version="$VERSION" \
             -o ./artifacts
