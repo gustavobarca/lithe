@@ -51,3 +51,39 @@ public sealed class User
     public string Name { get; set; } = string.Empty;
 }
 ```
+
+## Usage: `GetManyAsync<T>`
+
+`GetManyAsync<T>` builds the same `SELECT` statement as `GetAsync<T>`, but returns a list.
+
+```csharp
+public sealed class Service
+{
+    public Guid ServiceId { get; set; }
+    public string Name { get; set; } = string.Empty;
+}
+
+public static async Task<IEnumerable<Service>> LoadServicesAsync(IDbConnection connection, Guid serviceId)
+{
+    // Returns zero or more rows.
+    return await connection.GetManyAsync<Service>(serviceId);
+}
+```
+
+## Usage: `InsertAsync<T>`
+
+`InsertAsync<T>` builds an `INSERT` with all public readable properties and executes it.
+
+```csharp
+public sealed class Service
+{
+    public Guid ServiceId { get; set; }
+    public string Name { get; set; } = string.Empty;
+}
+
+public static async Task<int> SaveServiceAsync(IDbConnection connection, Service service)
+{
+    // Returns the number of affected rows.
+    return await connection.InsertAsync<Service>(service);
+}
+```
